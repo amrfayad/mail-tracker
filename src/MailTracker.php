@@ -5,6 +5,16 @@ namespace jdavidbakr\MailTracker;
 class MailTracker implements \Swift_Events_SendListener {
 
 	protected $hash;
+        protected $user_id;
+        protected $campaign_id;
+        
+        
+  
+
+        public function __construct($user_id ,$campaign_id ) {
+            $this->user_id = $user_id ;
+            $this->campaign_id = $campaign_id ; 
+        }
 	/**
 	 * Inject the tracking code into the message
 	 */
@@ -30,7 +40,9 @@ class MailTracker implements \Swift_Events_SendListener {
         }    	
 
     	Model\SentEmail::create([
-    			'hash'=>$hash,
+                        'user_id'=>  $this->user_id,
+                        'campaign_id'=>  $this->campaign_id,
+            		'hash'=>$hash,
     			'headers'=>$headers->toString(),
     			'sender'=>$headers->get('from')->getFieldBody(),
     			'recipient'=>$headers->get('to')->getFieldBody(),
@@ -109,5 +121,15 @@ class MailTracker implements \Swift_Events_SendListener {
     {
         // Replace "/" with "$"
         return str_replace("/","$",base64_encode($url));
+    }
+    
+    static public function cheakIfCampaigSendedbefore($user_id , $campaign_id){
+        return Model\SentEmail::where(
+                        [
+                            ['user_id',$user_id],
+                            ['campaign_id',$campaign_id],
+                        ])
+			->first();
+        
     }
 }
