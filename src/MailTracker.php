@@ -1,6 +1,6 @@
 <?php 
 
-namespace jdavidbakr\MailTracker;
+namespace amrfayad\MailTracker;
 
 class MailTracker implements \Swift_Events_SendListener {
 
@@ -76,7 +76,7 @@ class MailTracker implements \Swift_Events_SendListener {
     protected function injectTrackingPixel($html, $hash)
     {
     	// Append the tracking url
-    	$tracking_pixel = '<img src="'.action('\jdavidbakr\MailTracker\MailTrackerController@getT',[$hash]).'" />';
+    	$tracking_pixel = '<img src="'.action('\amrfayad\MailTracker\MailTrackerController@getT',[$hash]).'" />';
 
     	$linebreak = str_random(32);
     	$html = str_replace("\n",$linebreak,$html);
@@ -110,7 +110,7 @@ class MailTracker implements \Swift_Events_SendListener {
             $url = $matches[2];
         }
         
-    	return $matches[1].action('\jdavidbakr\MailTracker\MailTrackerController@getL',
+    	return $matches[1].action('\amrfayad\MailTracker\MailTrackerController@getL',
     		[
     			MailTracker::hash_url($url),
     			$this->hash

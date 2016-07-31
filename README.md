@@ -11,13 +11,13 @@ MailTracker will hook into all outgoing emails from Laravel/Lumen and inject a t
 Via Composer
 
 ``` bash
-$ composer require jdavidbakr/mail-tracker
+$ composer require amrfayad/mail-tracker
 ```
 
 Add the following to the providers array in config/app.php:
 
 ``` php
-jdavidbakr\MailTracker\MailTrackerServiceProvider::class,
+amrfayad\MailTracker\MailTrackerServiceProvider::class,
 ```
 
 Publish the config file and migration
@@ -35,16 +35,16 @@ $ php artisan migrate
 Via Composer
 
 ``` bash
-$ composer require jdavidbakr/mail-tracker
+$ composer require amrfayad/mail-tracker
 ```
 
 Register the following service provider in bootstrap/app.php
 
 ``` php
-jdavidbakr\MailTracker\MailTrackerServiceProvider::class
+amrfayad\MailTracker\MailTrackerServiceProvider::class
 ```
 
-Copy vendor/jdavidbakr/mail-tracker/migrations/2016_03_01_193027_create_sent_emails_table.php and vendor/jdavidbakr/mail-tracker/config/mail-tracker.php to your respective migrations and config folders. You may have to create a config folder if it doesn't already exist.
+Copy vendor/amrfayad/mail-tracker/migrations/2016_03_01_193027_create_sent_emails_table.php and vendor/amrfayad/mail-tracker/config/mail-tracker.php to your respective migrations and config folders. You may have to create a config folder if it doesn't already exist.
 
 Run the migration
 ``` bash
@@ -65,8 +65,8 @@ Once installed, all outgoing mail will be logged to the database.  The following
 
 When an email is viewed or a link is clicked, its tracking information is counted in the database using the jdavidbark\MailTracker\Model\SentEmail model. You may want to do additional processing on these events, so an event is fired in both cases:
 
-* jdavidbakr\MailTracker\Events\ViewEmailEvent
-* jdavidbakr\MailTracker\Events\LinkClickedEvent
+* amrfayad\MailTracker\Events\ViewEmailEvent
+* amrfayad\MailTracker\Events\LinkClickedEvent
 
 To install an event listener, you will want to create a file like the following:
 
@@ -75,7 +75,7 @@ To install an event listener, you will want to create a file like the following:
 
 namespace App\Listeners;
 
-use jdavidbakr\MailTracker\Events\ViewEmailEvent;
+use amrfayad\MailTracker\Events\ViewEmailEvent;
 
 class EmailViewed
 {
@@ -111,7 +111,7 @@ Then you must register the event in your \App\Providers\EventServiceProvider $li
  * @var array
  */
 protected $listen = [
-    'jdavidbakr\MailTracker\Events\ViewEmailEvent' => [
+    'amrfayad\MailTracker\Events\ViewEmailEvent' => [
         'App\Listeners\EmailViewed',
     ],
 ];
@@ -138,17 +138,17 @@ If you discover any security related issues, please email me@jdavidbaker.com ins
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/jdavidbakr/MailTracker.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/amrfayad/MailTracker.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/jdavidbakr/MailTracker/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/jdavidbakr/MailTracker.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/jdavidbakr/MailTracker.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/jdavidbakr/MailTracker.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/amrfayad/MailTracker/master.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/amrfayad/MailTracker.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/amrfayad/MailTracker.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/amrfayad/MailTracker.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/jdavidbakr/mail-tracker
-[link-travis]: https://travis-ci.org/jdavidbakr/MailTracker
-[link-scrutinizer]: https://scrutinizer-ci.com/g/jdavidbakr/MailTracker/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/jdavidbakr/MailTracker
-[link-downloads]: https://packagist.org/packages/jdavidbakr/mail-tracker
-[link-author]: https://github.com/jdavidbakr
+[link-packagist]: https://packagist.org/packages/amrfayad/mail-tracker
+[link-travis]: https://travis-ci.org/amrfayad/MailTracker
+[link-scrutinizer]: https://scrutinizer-ci.com/g/amrfayad/MailTracker/code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/amrfayad/MailTracker
+[link-downloads]: https://packagist.org/packages/amrfayad/mail-tracker
+[link-author]: https://github.com/amrfayad
 [link-contributors]: ../../contributors

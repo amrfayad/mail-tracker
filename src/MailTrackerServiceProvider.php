@@ -1,6 +1,6 @@
 <?php
 
-namespace jdavidbakr\MailTracker;
+namespace amrfayad\MailTracker;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
@@ -40,7 +40,7 @@ class MailTrackerServiceProvider extends ServiceProvider
 
         // Install the routes
         $config = $this->app['config']->get('mail-tracker.route', []);
-        $config['namespace'] = 'jdavidbakr\MailTracker';
+        $config['namespace'] = 'amrfayad\MailTracker';
 
         if (!$this->isLumen()) {
             Route::group($config, function()

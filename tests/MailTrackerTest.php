@@ -24,12 +24,12 @@ class AddressVerificationTest extends TestCase
 
 	public function testPing()
 	{
-		$track = \jdavidbakr\MailTracker\Model\SentEmail::first();
+		$track = \amrfayad\MailTracker\Model\SentEmail::first();
 
 		$pings = $track->opens;
 		$pings++;
 
-		$url = action('\jdavidbakr\MailTracker\MailTrackerController@getT',[$track->hash]);
+		$url = action('\amrfayad\MailTracker\MailTrackerController@getT',[$track->hash]);
 		$this->visit($url);
 
 		$track = $track->fresh();
@@ -38,15 +38,15 @@ class AddressVerificationTest extends TestCase
 
 	public function testLink()
 	{
-		$track = \jdavidbakr\MailTracker\Model\SentEmail::first();
+		$track = \amrfayad\MailTracker\Model\SentEmail::first();
 
 		$clicks = $track->clicks;
 		$clicks++;
 
 		$redirect = 'http://mfn1.myfootballnow.com/community/thread/2/1636?page=4&amp;x=tRnYCfp9mT#10111';
 
-		$url = action('\jdavidbakr\MailTracker\MailTrackerController@getL',[
-    			\jdavidbakr\MailTracker\MailTracker::hash_url($redirect), // Replace slash with dollar sign
+		$url = action('\amrfayad\MailTracker\MailTrackerController@getL',[
+    			\amrfayad\MailTracker\MailTracker::hash_url($redirect), // Replace slash with dollar sign
 				$track->hash
 			]);
 		$this->call('GET',$url);
@@ -56,8 +56,8 @@ class AddressVerificationTest extends TestCase
 		$this->assertEquals($clicks, $track->clicks);
 
 		// Do it with an invalid hash
-		$url = action('\jdavidbakr\MailTracker\MailTrackerController@getL',[
-    			\jdavidbakr\MailTracker\MailTracker::hash_url($redirect), // Replace slash with dollar sign
+		$url = action('\amrfayad\MailTracker\MailTrackerController@getL',[
+    			\amrfayad\MailTracker\MailTracker::hash_url($redirect), // Replace slash with dollar sign
 				'bad-hash'
 			]);
 		$this->call('GET',$url);

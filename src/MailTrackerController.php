@@ -1,6 +1,6 @@
 <?php
 
-namespace jdavidbakr\MailTracker;
+namespace amrfayad\MailTracker;
 
 use Illuminate\Http\Request;
 use Response;
@@ -9,8 +9,8 @@ use Event;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use jdavidbakr\MailTracker\Events\ViewEmailEvent;
-use jdavidbakr\MailTracker\Events\LinkClickedEvent;
+use amrfayad\MailTracker\Events\ViewEmailEvent;
+use amrfayad\MailTracker\Events\LinkClickedEvent;
 
 class MailTrackerController extends Controller
 {

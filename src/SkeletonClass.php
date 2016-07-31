@@ -1,6 +1,6 @@
 <?php
 
-namespace jdavidbakr\MailTracker;
+namespace amrfayad\MailTracker;
 
 class SkeletonClass
 {
